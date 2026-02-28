@@ -1,0 +1,20 @@
+[
+    {
+        "nome": "Laptop",
+        "prezzo": 999.99,
+        "disponibile": true,
+        "prezzo_scontato": 899.99
+    },
+    {
+        "nome": "Monitor",
+        "prezzo": 349.99,
+        "disponibile": true,
+        "prezzo_scontato": 314.99
+    },
+    {
+        "nome": "Webcam",
+        "prezzo": 89.99,
+        "disponibile": true,
+        "prezzo_scontato": 80.99
+    }
+]

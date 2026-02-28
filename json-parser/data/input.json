@@ -1,0 +1,27 @@
+[
+    {
+        "nome": "Laptop",
+        "prezzo": 999.99,
+        "disponibile": true
+    },
+    {
+        "nome": "Mouse",
+        "prezzo": 29.99,
+        "disponibile": false
+    },
+    {
+        "nome": "Monitor",
+        "prezzo": 349.99,
+        "disponibile": true
+    },
+    {
+        "nome": "Tastiera",
+        "prezzo": 79.99,
+        "disponibile": false
+    },
+    {
+        "nome": "Webcam",
+        "prezzo": 89.99,
+        "disponibile": true
+    }
+]
