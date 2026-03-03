@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from db.dbconnector import DBConnector
-from models.task import Task
+from models.task import Task, TaskPut
 
 router = APIRouter()
 db = DBConnector()
@@ -18,17 +18,12 @@ def get_all_tasks(completato: bool = False) -> list[Task]:
 def get_task(id: int) -> Task:
     tasks: list[Task] = db.get_tasks()
 
-    # here it works because id is an int, in the real world it might not
-    # depending on the type of id.
-    if id > len(tasks) or id < 1:
-        raise HTTPException(status_code=404, detail=f"Task with id {id} not found.")
-
     final_task = [task for task in tasks if task.id == id]
 
     if len(final_task) == 0:
         raise HTTPException(status_code=404, detail=f"Task with id {id} not found.")
 
-    return final_task[1]
+    return final_task[0]
 
 @router.post("/tasks")
 def add_new_task(task: Task):
@@ -40,10 +35,11 @@ def add_new_task(task: Task):
         raise HTTPException(status_code=500)
     
 @router.put("/tasks/{id}")
-def edit_task(id: int, titolo: str = "", descrizione: str = "", completato: bool = False):
+def edit_task(id: int, body: TaskPut):
     try:
-        db.edit_task(id, titolo, descrizione, completato)
+        db.edit_task(id, body)
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=500)
 
 @router.delete("/tasks/{id}")

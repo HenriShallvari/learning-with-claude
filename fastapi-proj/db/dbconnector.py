@@ -1,5 +1,5 @@
 import json
-from models.task import Task
+from models.task import Task, TaskPut
 
 
 class DBConnector:
@@ -31,14 +31,17 @@ class DBConnector:
 
         self.write_to_json(tasks)
 
-    def edit_task(self, id: int, titolo: str, descrizione: str, completato: bool):
+    def edit_task(self, id: int, task_put: TaskPut):
         tasks = self.get_tasks()
 
         for task in tasks:
             if task.id == id:
-                task.titolo = titolo if task.titolo != titolo and titolo.strip != "" else titolo
-                task.descrizione = descrizione if task.descrizione != descrizione and descrizione.strip() != "" else descrizione
-                task.completato = completato if task.completato != completato else completato
+                if task_put.titolo is not None:
+                    task.titolo = task_put.titolo
+                if task_put.descrizione is not None:
+                    task.descrizione = task_put.descrizione
+                if task_put.completato is not None:
+                    task.completato = task_put.completato
                 break
 
         self.write_to_json(tasks)
